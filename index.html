@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Travel - Đặt tour du lịch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="text-primary">Dream</span> Travel
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tours">Tours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Liên hệ</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div id="loginBtnGroup" class="d-flex">
+                        <button id="loginBtn" class="btn btn-outline-primary me-2" type="button">Đăng nhập</button>
+                    </div>
+                    <div id="userMenuGroup" class="dropdown d-none">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="usernameDisplay">User</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#" id="myBookingsBtn">Đơn hàng của tôi</a></li>
+                            <li><a class="dropdown-item" href="#" id="goToAdminBtn" style="display: none;">Trang quản trị</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-75">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Khám phá điểm đến mơ ước của bạn</h1>
+                    <p class="lead mb-4">Tìm và đặt các tour du lịch hấp dẫn với giá tốt nhất. Trải nghiệm kỳ nghỉ tuyệt
+                        vời cùng Dream Travel.</p>
+                    <form class="search-form">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Bạn muốn đi đâu?">
+                            <button class="btn btn-primary" type="button">Tìm kiếm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="tours" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Tour nổi bật</h2>
+            <div class="row g-4" id="featuredTours">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">Về Dream Travel</h2>
+                    <p>Dream Travel là công ty du lịch hàng đầu Việt Nam, chuyên cung cấp các dịch vụ du lịch chất lượng
+                        cao với giá cả hợp lý. Chúng tôi cam kết mang đến cho khách hàng những trải nghiệm du lịch tuyệt
+                        vời và đáng nhớ.</p>
+                    <p>Với đội ngũ nhân viên chuyên nghiệp và giàu kinh nghiệm, chúng tôi luôn sẵn sàng hỗ trợ bạn trong
+                        mọi khía cạnh của hành trình du lịch.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-stats">
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="stat-item">
+                                    <h3>1000+</h3>
+                                    <p>Tour đã tổ chức</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="stat-item">
+                                    <h3>50+</h3>
+                                    <p>Điểm đến</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="stat-item">
+                                    <h3>10000+</h3>
+                                    <p>Khách hàng hài lòng</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Liên hệ với chúng tôi</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Họ và tên" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control" placeholder="Số điện thoại">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Nội dung" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gửi tin nhắn</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <div class="mb-4">
+                            <h5><i class="fas fa-map-marker-alt me-2"></i> Địa chỉ</h5>
+                            <p>123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5><i class="fas fa-phone me-2"></i> Điện thoại</h5>
+                            <p>0123 456 789</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5><i class="fas fa-envelope me-2"></i> Email</h5>
+                            <p>info@dreamtravel.com</p>
+                        </div>
+                        <div class="social-media">
+                            <h5>Kết nối với chúng tôi</h5>
+                            <div class="social-icons">
+                                <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="me-3"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đăng nhập</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="mb-0">Chưa có tài khoản? <a href="#" id="registerLink">Đăng ký ngay</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tourDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tourTitle">Chi tiết tour</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="tourDetailContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="bookTourBtn">Đặt tour</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đặt tour</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookingForm">
+                        <input type="hidden" id="tourId">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="travelDate" class="form-label">Ngày khởi hành</label>
+                            <input type="date" class="form-control" id="travelDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="numPersons" class="form-label">Số người</label>
+                            <input type="number" class="form-control" id="numPersons" min="1" value="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Ghi chú</label>
+                            <textarea class="form-control" id="notes" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="submitBookingBtn">Xác nhận đặt tour</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myBookingsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đơn hàng của tôi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn</th>
+                                    <th>Tên tour</th>
+                                    <th>Ngày khởi hành</th>
+                                    <th>Số người</th>
+                                    <th>Trạng thái</th>
+                                    <th>Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myBookingsList">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5>Dream Travel</h5>
+                    <p>Khám phá thế giới với chúng tôi. Chúng tôi cung cấp những trải nghiệm du lịch đáng nhớ với giá cả
+                        phải chăng.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>Liên kết</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Trang chủ</a></li>
+                        <li><a href="#tours" class="text-white text-decoration-none">Tours</a></li>
+                        <li><a href="#about" class="text-white text-decoration-none">Giới thiệu</a></li>
+                        <li><a href="#contact" class="text-white text-decoration-none">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>Điểm đến phổ biến</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Đà Lạt</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Phú Quốc</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Nha Trang</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Hạ Long</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Sapa</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Liên hệ</h5>
+                    <address class="mb-0">
+                        <p><i class="fas fa-map-marker-alt me-2"></i> Hà Đông</p>
+                        <p><i class="fas fa-phone me-2"></i>0374907986</p>
+                        <p><i class="fas fa-envelope me-2"></i>phamphuongkhanh2906@gmai.com</p>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="py-3 bg-primary text-white text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Phạm Phương Khánh. All rights reserved.</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

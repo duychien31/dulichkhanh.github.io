@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Travel - Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <div class="sidebar" id="sidebar">
+            <div class="brand p-3">
+                <h3><span class="text-primary">Dream</span> Travel</h3>
+                <p class="text-muted small">Admin Dashboard</p>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" data-page="dashboard">
+                        <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="tours">
+                        <i class="fas fa-route me-2"></i> Quản lý Tours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="bookings">
+                        <i class="fas fa-calendar-check me-2"></i> Đơn đặt tour
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="users">
+                        <i class="fas fa-users me-2"></i> Người dùng
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="settings">
+                        <i class="fas fa-cog me-2"></i> Cài đặt
+                    </a>
+                </li>
+
+            </ul>
+            <div class="mt-auto p-3">
+                <a href="#" class="btn btn-outline-light btn-sm w-100" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
+                </a>
+            </div>
+            <div class="container-fluid">
+                <button id="sidebarToggle" class="btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="index.html" class="btn btn-outline-primary btn-sm ms-2">
+                    <i class="fas fa-home me-1"></i> Về trang chủ
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+                <div class="container-fluid">
+                    <button id="sidebarToggle" class="btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="d-flex align-items-center ms-auto">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="notificationDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="far fa-bell"></i>
+                                <span class="badge bg-danger rounded-pill">3</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                                <li>
+                                    <h6 class="dropdown-header">Thông báo</h6>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Đơn đặt tour mới</a></li>
+                                <li><a class="dropdown-item" href="#">Đánh giá mới từ khách hàng</a></li>
+                                <li><a class="dropdown-item" href="#">Cập nhật hệ thống</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-center" href="#">Xem tất cả</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown ms-3">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+                                id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar me-2">
+                                    <img src="https://via.placeholder.com/40" alt="Admin" class="rounded-circle">
+                                </div>
+                                <div>
+                                    <span class="d-none d-sm-inline">Admin</span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Hồ sơ</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Cài đặt</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" id="dropdownLogout"><i
+                                            class="fas fa-sign-out-alt me-2"></i> Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content p-4">
+                <div class="page active" id="dashboard-page">
+                    <h2 class="mb-4">Dashboard</h2>
+                    <div class="row mb-4">
+                        <div class="col-md-3 mb-3">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-muted">Tổng tour</h6>
+                                            <h3 class="mb-0" id="totalTours">0</h3>
+                                        </div>
+                                        <div class="icon-bg bg-primary bg-opacity-10 rounded p-3">
+                                            <i class="fas fa-route text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-muted">Đơn đặt tour</h6>
+                                            <h3 class="mb-0" id="totalBookings">0</h3>
+                                        </div>
+                                        <div class="icon-bg bg-success bg-opacity-10 rounded p-3">
+                                            <i class="fas fa-calendar-check text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-muted">Người dùng</h6>
+                                            <h3 class="mb-0" id="totalUsers">0</h3>
+                                        </div>
+                                        <div class="icon-bg bg-info bg-opacity-10 rounded p-3">
+                                            <i class="fas fa-users text-info"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-muted">Doanh thu</h6>
+                                            <h3 class="mb-0" id="totalRevenue">0 ₫</h3>
+                                        </div>
+                                        <div class="icon-bg bg-warning bg-opacity-10 rounded p-3">
+                                            <i class="fas fa-money-bill-wave text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="mb-0">Đơn đặt tour gần đây</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn</th>
+                                            <th>Tour</th>
+                                            <th>Khách hàng</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Trạng thái</th>
+                                            <th>Tổng tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentBookings">
+            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white text-center">
+                            <a href="#" class="btn btn-sm btn-outline-primary" data-page="bookings">Xem tất cả</a>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="mb-0">Tour phổ biến</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Tour</th>
+                                            <th>Lượt đặt</th>
+                                            <th>Đánh giá</th>
+                                            <th>Giá</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="popularTours">
+                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white text-center">
+                            <a href="#" class="btn btn-sm btn-outline-primary" data-page="tours">Xem tất cả</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" id="tours-page">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Quản lý Tours</h2>
+                        <button class="btn btn-primary" id="addTourBtn">
+                            <i class="fas fa-plus me-2"></i> Thêm tour mới
+                        </button>
+                    </div>
+
+      
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="tourSearchInput"
+                                        placeholder="Tìm kiếm tour...">
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="tourCategoryFilter">
+                                        <option value="">Tất cả loại tour</option>
+                                        <option value="domestic">Tour trong nước</option>
+                                        <option value="international">Tour quốc tế</option>
+                                        <option value="adventure">Tour mạo hiểm</option>
+                                        <option value="resort">Tour nghỉ dưỡng</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="tourStatusFilter">
+                                        <option value="">Tất cả trạng thái</option>
+                                        <option value="active">Đang mở bán</option>
+                                        <option value="inactive">Ngừng bán</option>
+                                        <option value="coming">Sắp mở bán</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-outline-primary w-100" id="tourFilterBtn">
+                                        <i class="fas fa-filter me-2"></i> Lọc
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Ảnh</th>
+                                            <th>Tên tour</th>
+                                            <th>Điểm đến</th>
+                                            <th>Thời gian</th>
+                                            <th>Giá</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="toursList">
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <nav>
+                                <ul class="pagination justify-content-center mb-0" id="toursPagination">
+                          
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" id="bookings-page">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Đơn đặt tour</h2>
+                        <div>
+                            <button class="btn btn-outline-success me-2" id="exportBookingsBtn">
+                                <i class="fas fa-file-excel me-2"></i> Xuất Excel
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" id="bookingSearchInput"
+                                        placeholder="Tìm kiếm...">
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="bookingStatusFilter">
+                                        <option value="">Tất cả trạng thái</option>
+                                        <option value="pending">Chờ xác nhận</option>
+                                        <option value="confirmed">Đã xác nhận</option>
+                                        <option value="cancelled">Đã hủy</option>
+                                        <option value="completed">Hoàn thành</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" id="bookingDateFilter"
+                                        placeholder="Ngày đặt">
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-outline-primary w-100" id="bookingFilterBtn">
+                                        <i class="fas fa-filter me-2"></i> Lọc
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn</th>
+                                            <th>Tour</th>
+                                            <th>Khách hàng</th>
+                                            <th>Số người</th>
+                                            <th>Ngày khởi hành</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bookingsList">
+                     
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <nav>
+                                <ul class="pagination justify-content-center mb-0" id="bookingsPagination">
+             
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="page" id="users-page">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Quản lý người dùng</h2>
+                        <button class="btn btn-primary" id="addUserBtn">
+                            <i class="fas fa-plus me-2"></i> Thêm người dùng
+                        </button>
+                    </div>
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="userSearchInput"
+                                        placeholder="Tìm kiếm người dùng...">
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-select" id="userRoleFilter">
+                                        <option value="">Tất cả vai trò</option>
+                                        <option value="user">Người dùng</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-outline-primary w-100" id="userFilterBtn">
+                                        <i class="fas fa-filter me-2"></i> Lọc
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên</th>
+                                            <th>Email</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Vai trò</th>
+                                            <th>Ngày đăng ký</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usersList">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <nav>
+                                <ul class="pagination justify-content-center mb-0" id="usersPagination">
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                <div class="page" id="settings-page">
+                    <h2 class="mb-4">Cài đặt hệ thống</h2>
+
+                    <div class="row">
+                        <div class="col-lg-8 mb-4">
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-header bg-white py-3">
+                                    <h5 class="mb-0">Cài đặt chung</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="generalSettingsForm">
+                                        <div class="mb-3">
+                                            <label for="siteName" class="form-label">Tên website</label>
+                                            <input type="text" class="form-control" id="siteName" value="Dream Travel">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="siteDescription" class="form-label">Mô tả</label>
+                                            <textarea class="form-control" id="siteDescription"
+                                                rows="3">Website đặt tour du lịch hàng đầu Việt Nam</textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="contactEmail" class="form-label">Email liên hệ</label>
+                                            <input type="email" class="form-control" id="contactEmail"
+                                                value="info@dreamtravel.com">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="contactPhone" class="form-label">Số điện thoại liên hệ</label>
+                                            <input type="tel" class="form-control" id="contactPhone"
+                                                value="0123 456 789">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-header bg-white py-3">
+                                    <h5 class="mb-0">Cài đặt thanh toán</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="paymentSettingsForm">
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="enableCashPayment"
+                                                    checked>
+                                                <label class="form-check-label" for="enableCashPayment">Thanh toán tiền
+                                                    mặt</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="enableBankTransfer"
+                                                    checked>
+                                                <label class="form-check-label" for="enableBankTransfer">Chuyển khoản
+                                                    ngân hàng</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="enableOnlinePayment">
+                                                <label class="form-check-label" for="enableOnlinePayment">Thanh toán
+                                                    trực tuyến</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="bankAccountInfo" class="form-label">Thông tin tài khoản ngân
+                                                hàng</label>
+                                            <textarea class="form-control" id="bankAccountInfo" rows="3">Ngân hàng XYZ
+Số tài khoản: 123456789
+Chủ tài khoản: CÔNG TY DREAM TRAVEL</textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-header bg-white py-3">
+                                    <h5 class="mb-0">Hồ sơ admin</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center mb-3">
+                                        <img src="https://via.placeholder.com/100" alt="Admin" class="rounded-circle">
+                                        <div class="mt-2">
+                                            <button class="btn btn-sm btn-outline-primary">Thay đổi ảnh</button>
+                                        </div>
+                                    </div>
+                                    <form id="adminProfileForm">
+                                        <div class="mb-3">
+                                            <label for="adminName" class="form-label">Họ và tên</label>
+                                            <input type="text" class="form-control" id="adminName" value="Admin">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="adminEmail" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="adminEmail"
+                                                value="admin@dreamtravel.com">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="adminPhone" class="form-label">Số điện thoại</label>
+                                            <input type="tel" class="form-control" id="adminPhone" value="0987 654 321">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-header bg-white py-3">
+                                    <h5 class="mb-0">Đổi mật khẩu</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="changePasswordForm">
+                                        <div class="mb-3">
+                                            <label for="currentPassword" class="form-label">Mật khẩu hiện tại</label>
+                                            <input type="password" class="form-control" id="currentPassword">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="newPassword" class="form-label">Mật khẩu mới</label>
+                                            <input type="password" class="form-control" id="newPassword">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="confirmNewPassword" class="form-label">Xác nhận mật khẩu
+                                                mới</label>
+                                            <input type="password" class="form-control" id="confirmNewPassword">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100">Đổi mật khẩu</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tourModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tourModalTitle">Thêm tour mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="tourForm">
+                        <input type="hidden" id="tourId">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label for="tourName" class="form-label">Tên tour</label>
+                                    <input type="text" class="form-control" id="tourName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="tourCategory" class="form-label">Loại tour</label>
+                                    <select class="form-select" id="tourCategory" required>
+                                        <option value="">Chọn loại tour</option>
+                                        <option value="domestic">Tour trong nước</option>
+                                        <option value="international">Tour quốc tế</option>
+                                        <option value="adventure">Tour mạo hiểm</option>
+                                        <option value="resort">Tour nghỉ dưỡng</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="tourDestination" class="form-label">Điểm đến</label>
+                                    <input type="text" class="form-control" id="tourDestination" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="tourDuration" class="form-label">Thời gian</label>
+                                    <input type="text" class="form-control" id="tourDuration"
+                                        placeholder="VD: 3 ngày 2 đêm" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="tourGroupSize" class="form-label">Số người tối đa</label>
+                                    <input type="number" class="form-control" id="tourGroupSize" min="1" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="tourPrice" class="form-label">Giá (VNĐ)</label>
+                                    <input type="number" class="form-control" id="tourPrice" min="0" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="tourDiscount" class="form-label">Giảm giá (%)</label>
+                                    <input type="number" class="form-control" id="tourDiscount" min="0" max="100"
+                                        value="0">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="tourStatus" class="form-label">Trạng thái</label>
+                                    <select class="form-select" id="tourStatus" required>
+                                        <option value="active">Đang mở bán</option>
+                                        <option value="inactive">Ngừng bán</option>
+                                        <option value="coming">Sắp mở bán</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tourDescription" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="tourDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tourItinerary" class="form-label">Lịch trình</label>
+                            <textarea class="form-control" id="tourItinerary" rows="5" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tourImage" class="form-label">Hình ảnh</label>
+                            <input type="file" class="form-control" id="tourImage">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="saveTourBtn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="bookingDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chi tiết đơn đặt tour</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="bookingDetailContent">
+    
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-success" id="confirmBookingBtn">Xác nhận đơn</button>
+                    <button type="button" class="btn btn-danger" id="cancelBookingBtn">Hủy đơn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userModalTitle">Thêm người dùng mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="userForm">
+                        <input type="hidden" id="userId">
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="userName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="userEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userPhone" class="form-label">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="userPhone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="userPassword" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="userPassword">
+                            <small class="form-text text-muted">Để trống nếu không muốn thay đổi mật khẩu</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userRole" class="form-label">Vai trò</label>
+                            <select class="form-select" id="userRole" required>
+                                <option value="user">Người dùng</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userStatus" class="form-label">Trạng thái</label>
+                            <select class="form-select" id="userStatus" required>
+                                <option value="active">Hoạt động</option>
+                                <option value="inactive">Vô hiệu hóa</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="saveUserBtn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginCheckModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đăng nhập Admin</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="adminLoginForm">
+                        <div class="mb-3">
+                            <label for="adminUsername" class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" id="adminUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adminPassword" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="adminPassword" required>
+                        </div>
+                        <div id="loginError" class="text-danger mb-3 d-none">
+                            Tên đăng nhập hoặc mật khẩu không đúng
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="index.html" class="btn btn-outline-secondary">Quay về trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
